@@ -6,6 +6,22 @@
     <title>Generador de OT - Mantenimiento</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="images/logo-mostaza-chico-150x150.png" type="image/png">
+    <script>
+        // Asegurar que la página siempre se cargue en la parte superior
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // También forzar el scroll al inicio si se navega hacia atrás/adelante
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // Asegurar que la página comience en la parte superior incluso antes de que se cargue completamente
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
 </head>
 <body>
     <div class="container" id="inicio">
@@ -30,6 +46,11 @@
                 <div class="form-group">
                     <label for="idTienda">ID de Tienda:</label>
                     <input type="text" id="idTienda" placeholder="Ej: T-1024" aria-label="ID de Tienda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="solicitante">Nombre del Solicitante:</label>
+                    <input type="text" id="solicitante" placeholder="Ingrese su nombre" aria-label="Nombre del Solicitante" required>
                 </div>
 
                 <div class="form-group">
@@ -69,11 +90,13 @@
             </div>
         </div>
         
-        <!-- Contenedor para el formulario de Google Forms -->
-        <div class="formulario-container">
-            <div class="iframe-wrapper">
-                <iframe src="https://forms.gle/UmFFpCRuV942BuJ26" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+        <div class="google-form-container">
+            <div class="form-action-buttons">
+                <button type="button" id="pegarResumenBtn" class="action-button pegar-button">
+                    <span class="icon">📋</span> Pegar Resumen en Formulario
+                </button>
             </div>
+            <iframe src="https://forms.gle/UmFFpCRuV942BuJ26" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
         </div>
         
         <!-- Botones de navegación -->

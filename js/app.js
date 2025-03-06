@@ -1,5 +1,14 @@
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
+    // Forzar scroll al inicio de la página
+    window.scrollTo(0, 0);
+    
+    // Verificar si se debe ir al inicio después de recargar
+    if (sessionStorage.getItem('scrollToTop') === 'true') {
+        window.scrollTo(0, 0);
+        sessionStorage.removeItem('scrollToTop');
+    }
+    
     // Capturar elementos del DOM
     const form = document.getElementById('otForm');
     const generarBtn = document.getElementById('generarBtn');
@@ -10,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyMessage = document.getElementById('copyMessage');
     const nuevaOTBtn = document.getElementById('nuevaOTBtn');
     const volverArribaBtn = document.getElementById('volverArribaBtn');
+    const pegarResumenBtn = document.getElementById('pegarResumenBtn');
     
     // Limpiar formulario al iniciar
     const limpiarFormulario = () => {
@@ -76,10 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const validarFormulario = () => {
         const tipoLocal = document.getElementById('tipoLocal').value;
         const idTienda = document.getElementById('idTienda').value;
+        const solicitante = document.getElementById('solicitante').value;
         const caracterOT = document.getElementById('caracterOT').value;
         const descripcion = document.getElementById('descripcion').value;
         
-        if (!tipoLocal || !idTienda || !caracterOT || !descripcion) {
+        if (!tipoLocal || !idTienda || !solicitante || !caracterOT || !descripcion) {
             return false;
         }
         
@@ -102,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const tipoLocal = document.getElementById('tipoLocal').value;
         const idTienda = document.getElementById('idTienda').value;
+        const solicitante = document.getElementById('solicitante').value;
         const caracterOT = document.getElementById('caracterOT').value;
         const descripcion = document.getElementById('descripcion').value;
         
@@ -126,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resumen = `[OT: ${numeroOT}]
 • Tipo Local: ${tipoLocal}
 • ID Tienda: ${idTienda}
+• Solicitante: ${solicitante}
 • Carácter: ${caracterOT}
 • Fecha: ${fechaFormateada}
 • Descripción: ${descripcion}
@@ -170,6 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Limpiar localStorage antes de refrescar
         localStorage.removeItem('ultimoIdTienda');
         
+        // Establecer una bandera para indicar que queremos ir al inicio después de recargar
+        sessionStorage.setItem('scrollToTop', 'true');
+        
         // Refrescar la página completamente (como F5)
         location.reload();
     };
@@ -179,11 +195,40 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     
+    // Función para pegar el resumen en el formulario de Google
+    const pegarResumenEnFormulario = async () => {
+        if (!resumenTextarea.value) {
+            alert('Primero debe generar una OT para tener un resumen que pegar.');
+            return;
+        }
+        
+        try {
+            // Copiar el resumen al portapapeles
+            await navigator.clipboard.writeText(resumenTextarea.value);
+            
+            // Mostrar mensaje de éxito
+            alert('¡Resumen copiado al portapapeles! Ahora puede pegarlo en el primer campo del formulario usando Ctrl+V o haciendo clic derecho y seleccionando "Pegar".');
+            
+            // Hacer scroll hasta el iframe del formulario
+            const iframe = document.querySelector('.google-form-container iframe');
+            if (iframe) {
+                iframe.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Intentar enfocar el iframe (aunque puede no funcionar por restricciones de seguridad)
+                iframe.focus();
+            }
+        } catch (err) {
+            alert('No se pudo copiar automáticamente. Por favor, copie manualmente el resumen y péguelo en el formulario.');
+            console.error('Error al intentar pegar: ', err);
+        }
+    };
+    
     // Eventos
     generarBtn.addEventListener('click', generarOT);
     copiarBtn.addEventListener('click', copiarResumen);
     nuevaOTBtn.addEventListener('click', nuevaOT);
     volverArribaBtn.addEventListener('click', volverArriba);
+    pegarResumenBtn.addEventListener('click', pegarResumenEnFormulario);
     
     // Validación en tiempo real
     const inputs = form.querySelectorAll('input, select, textarea');
