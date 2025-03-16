@@ -9,6 +9,160 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem('scrollToTop');
     }
     
+    // Inicializar la animación de la malla de puntos
+    const initNetworkAnimation = () => {
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Ajustar el tamaño del canvas al tamaño de la ventana
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        
+        // Llamar a resize inicialmente y cuando cambie el tamaño de la ventana
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Configuración de la animación
+        const config = {
+            particleCount: 70,
+            particleColor: 'rgba(255, 255, 255, 0.5)',
+            lineColor: 'rgba(255, 255, 255, 0.2)',
+            particleRadius: 2,
+            lineWidth: 1,
+            maxDistance: 170,
+            speed: 0.5,
+            parallaxIntensity: 5 // Intensidad del efecto parallax
+        };
+        
+        // Arreglo para almacenar las partículas
+        let particles = [];
+        
+        // Variables para el efecto parallax
+        let mouseX = 0;
+        let mouseY = 0;
+        let parallaxX = 0;
+        let parallaxY = 0;
+        
+        // Seguir la posición del mouse para el efecto parallax
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // Seguir el scroll para el efecto parallax
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+        
+        // Clase para las partículas
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = Math.random() * config.speed * 2 - config.speed;
+                this.vy = Math.random() * config.speed * 2 - config.speed;
+                this.radius = Math.random() * config.particleRadius + 1;
+            }
+            
+            update() {
+                // Actualizar posición
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Rebotar en los bordes
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            
+            draw() {
+                // Aplicar efecto parallax
+                const parallaxOffsetX = (mouseX / window.innerWidth - 0.5) * config.parallaxIntensity;
+                const parallaxOffsetY = ((mouseY / window.innerHeight - 0.5) + (scrollY / 1000)) * config.parallaxIntensity;
+                
+                const drawX = this.x + parallaxOffsetX;
+                const drawY = this.y + parallaxOffsetY;
+                
+                ctx.beginPath();
+                ctx.arc(drawX, drawY, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = config.particleColor;
+                ctx.fill();
+            }
+        }
+        
+        // Inicializar partículas
+        const initParticles = () => {
+            particles = [];
+            for (let i = 0; i < config.particleCount; i++) {
+                particles.push(new Particle());
+            }
+        };
+        
+        // Dibujar líneas entre partículas cercanas
+        const drawLines = () => {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    // Aplicar efecto parallax
+                    const parallaxOffsetX = (mouseX / window.innerWidth - 0.5) * config.parallaxIntensity;
+                    const parallaxOffsetY = ((mouseY / window.innerHeight - 0.5) + (scrollY / 1000)) * config.parallaxIntensity;
+                    
+                    const p1x = particles[i].x + parallaxOffsetX;
+                    const p1y = particles[i].y + parallaxOffsetY;
+                    const p2x = particles[j].x + parallaxOffsetX;
+                    const p2y = particles[j].y + parallaxOffsetY;
+                    
+                    // Calcular distancia entre partículas
+                    const dx = p1x - p2x;
+                    const dy = p1y - p2y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < config.maxDistance) {
+                        // Opacidad basada en la distancia
+                        const opacity = 1 - (distance / config.maxDistance);
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(p1x, p1y);
+                        ctx.lineTo(p2x, p2y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.2})`;
+                        ctx.lineWidth = config.lineWidth;
+                        ctx.stroke();
+                    }
+                }
+            }
+        };
+        
+        // Función de animación
+        const animate = () => {
+            // Limpiar canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Actualizar y dibujar partículas
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Dibujar líneas
+            drawLines();
+            
+            // Suavizar el efecto parallax
+            parallaxX += (mouseX - parallaxX) * 0.1;
+            parallaxY += (mouseY - parallaxY) * 0.1;
+            
+            // Continuar la animación
+            requestAnimationFrame(animate);
+        };
+        
+        // Iniciar la animación
+        initParticles();
+        animate();
+    };
+    
+    // Iniciar la animación de la malla de puntos
+    initNetworkAnimation();
+    
     // Capturar elementos del DOM
     const form = document.getElementById('otForm');
     const generarBtn = document.getElementById('generarBtn');
@@ -178,21 +332,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Función para crear una nueva OT (refrescar página completamente)
+    // Función para crear una nueva OT (limpiar el formulario)
     const nuevaOT = () => {
-        // Limpiar localStorage antes de refrescar
-        localStorage.removeItem('ultimoIdTienda');
+        // Limpiar el textarea del resumen
+        if (resumenTextarea) {
+            resumenTextarea.value = '';
+        }
         
-        // Establecer una bandera para indicar que queremos ir al inicio después de recargar
+        // Limpiar otros campos si es necesario
+        
+        // Volver al inicio de la página
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Establecer bandera para recargar la página
         sessionStorage.setItem('scrollToTop', 'true');
         
-        // Refrescar la página completamente (como F5)
+        // Recargar la página para reiniciar el iframe de Google Forms
         location.reload();
     };
     
-    // Función para volver arriba
+    // Función para volver al inicio de la página
     const volverArriba = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
     
     // Función para pegar el resumen en el formulario de Google
@@ -227,7 +394,9 @@ document.addEventListener('DOMContentLoaded', () => {
     generarBtn.addEventListener('click', generarOT);
     copiarBtn.addEventListener('click', copiarResumen);
     nuevaOTBtn.addEventListener('click', nuevaOT);
-    volverArribaBtn.addEventListener('click', volverArriba);
+    if (volverArribaBtn) {
+        volverArribaBtn.addEventListener('click', volverArriba);
+    }
     pegarResumenBtn.addEventListener('click', pegarResumenEnFormulario);
     
     // Validación en tiempo real

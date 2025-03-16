@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Robot Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Cabeza del robot -->
+        <rect fill="#FFFFFF" x="25" y="15" width="50" height="40" rx="5"></rect>
+        
+        <!-- Ojos -->
+        <circle fill="#e74c3c" cx="40" cy="30" r="5"></circle>
+        <circle fill="#e74c3c" cx="60" cy="30" r="5"></circle>
+        
+        <!-- Antenas -->
+        <line x1="35" y1="15" x2="30" y2="5" stroke="#FFFFFF" stroke-width="2"></line>
+        <line x1="65" y1="15" x2="70" y2="5" stroke="#FFFFFF" stroke-width="2"></line>
+        <circle fill="#FFFFFF" cx="30" cy="5" r="2"></circle>
+        <circle fill="#FFFFFF" cx="70" cy="5" r="2"></circle>
+        
+        <!-- Boca -->
+        <rect fill="#FFFFFF" x="35" y="40" width="30" height="5" rx="2"></rect>
+        <line x1="35" y1="42.5" x2="65" y2="42.5" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,2"></line>
+        
+        <!-- Cuerpo -->
+        <rect fill="#FFFFFF" x="30" y="55" width="40" height="30" rx="3"></rect>
+        
+        <!-- Botones/Luces -->
+        <circle fill="#e74c3c" cx="40" cy="65" r="3"></circle>
+        <circle fill="#c0392b" cx="50" cy="65" r="3"></circle>
+        <circle fill="#ff6b6b" cx="60" cy="65" r="3"></circle>
+        
+        <!-- Brazos -->
+        <rect fill="#FFFFFF" x="15" y="60" width="15" height="5" rx="2"></rect>
+        <rect fill="#FFFFFF" x="70" y="60" width="15" height="5" rx="2"></rect>
+        
+        <!-- Piernas -->
+        <rect fill="#FFFFFF" x="35" y="85" width="10" height="10" rx="2"></rect>
+        <rect fill="#FFFFFF" x="55" y="85" width="10" height="10" rx="2"></rect>
+    </g>
+</svg>

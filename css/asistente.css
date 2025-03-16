@@ -1,0 +1,340 @@
+/* Estilos específicos para la página del Asistente IA */
+
+.asistente-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    margin: 30px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+}
+
+.asistente-info {
+    text-align: center;
+}
+
+.robot-icon {
+    margin: 0 auto 20px;
+    width: 150px;
+    height: 150px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.robot-image {
+    width: 100px;
+    height: 100px;
+}
+
+.asistente-info h2 {
+    color: #e74c3c;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Formulario del asistente */
+.asistente-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #e74c3c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+select.form-control {
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.consulta-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.limpiar-button {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.consulta-button:hover,
+.limpiar-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.consulta-button:hover {
+    background-color: #c0392b;
+}
+
+.limpiar-button:hover {
+    background-color: #636e72;
+}
+
+.consulta-button:active,
+.limpiar-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Área de respuesta */
+.respuesta-container {
+    margin-top: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    border-left: 4px solid #e74c3c;
+}
+
+.respuesta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.respuesta-header h3 {
+    color: #333;
+    font-size: 20px;
+    margin: 0;
+}
+
+.api-indicator {
+    background-color: #e74c3c;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.api-indicator::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+.respuesta-content {
+    line-height: 1.6;
+    color: #333;
+    font-size: 16px;
+}
+
+.respuesta-content ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.respuesta-content li {
+    margin-bottom: 5px;
+}
+
+.respuesta-content strong {
+    color: #e74c3c;
+}
+
+/* Animación de carga */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(231, 76, 60, 0.3);
+    border-radius: 50%;
+    border-top-color: #e74c3c;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.volver-button {
+    background-color: #e74c3c;
+}
+
+.volver-button:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .asistente-container {
+        padding: 20px;
+        margin: 20px 15px;
+    }
+    
+    .robot-icon {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .robot-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .asistente-info h2 {
+        font-size: 24px;
+    }
+    
+    .asistente-form {
+        padding: 10px 0;
+    }
+    
+    .form-control {
+        padding: 10px;
+    }
+    
+    .nav-buttons {
+        flex-direction: row;
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .asistente-container {
+        padding: 15px;
+        margin: 15px 10px;
+    }
+    
+    .robot-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .robot-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .asistente-info h2 {
+        font-size: 22px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    .form-control {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .consulta-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .respuesta-container {
+        padding: 15px;
+    }
+    
+    .respuesta-container h3 {
+        font-size: 18px;
+    }
+    
+    .respuesta-content {
+        font-size: 14px;
+    }
+    
+    .nav-buttons {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+}

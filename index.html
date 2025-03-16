@@ -24,6 +24,11 @@
     </script>
 </head>
 <body>
+    <!-- Fondo de malla de puntos -->
+    <div class="network-background">
+        <canvas id="networkCanvas"></canvas>
+    </div>
+    
     <div class="container" id="inicio">
         <div class="header">
             <div class="logo-container">
@@ -101,11 +106,14 @@
         
         <!-- Botones de navegación -->
         <div class="nav-buttons">
-            <button id="nuevaOTBtn" type="button" class="action-button">
-                <i class="icon-refresh"></i> Nueva OT
+            <a href="asistente.html" id="asistenteIABtn" class="nav-button asistente-button">
+                <span class="icon">🤖</span> Asistente IA
+            </a>
+            <button id="nuevaOTBtn" class="nav-button nueva-ot-button">
+                <span class="icon">↻</span> Nueva OT
             </button>
-            <button id="volverArribaBtn" type="button" class="action-button">
-                <i class="icon-up"></i> Volver arriba
+            <button id="volverArribaBtn" class="nav-button volver-arriba-button">
+                <span class="icon">↑</span> Volver arriba
             </button>
         </div>
     </div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente IA - Mostaza Mantenimiento</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/base-conocimiento.css">
+    <link rel="stylesheet" href="css/asistente.css">
+    <link rel="icon" href="images/logo-mostaza-chico-150x150.png" type="image/png">
+</head>
+<body>
+    <!-- Fondo de malla de puntos -->
+    <div class="network-background">
+        <canvas id="networkCanvas"></canvas>
+    </div>
+    
+    <div class="container" id="inicio">
+        <div class="header">
+            <div class="logo-container">
+                <img src="images/logo-mostaza-blanco.png" alt="Logo Mostaza" class="logo">
+            </div>
+            <h1>Asistente IA de Mantenimiento</h1>
+        </div>
+        
+        <div class="asistente-container">
+            <div class="asistente-info">
+                <div class="robot-icon">
+                    <img src="images/robot-icon.svg" alt="Robot IA" class="robot-image">
+                </div>
+                <h2>Consulta al Asistente</h2>
+                
+                <div class="asistente-form">
+                    <!-- Selector de categoría -->
+                    <div class="form-group">
+                        <label for="categoria">Selecciona una categoría:</label>
+                        <select id="categoria" class="form-control">
+                            <option value="" disabled selected>Elige una categoría</option>
+                            <option value="equipos">Equipos</option>
+                            <option value="edilicios">Edilicios</option>
+                            <option value="climatizacion">Climatización</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Campo de consulta -->
+                    <div class="form-group">
+                        <label for="consulta">¿Qué deseas consultar?</label>
+                        <textarea id="consulta" class="form-control" rows="4" placeholder="Escribe tu consulta aquí..."></textarea>
+                    </div>
+                    
+                    <!-- Botones de acción -->
+                    <div class="button-group">
+                        <button id="enviarConsulta" class="consulta-button">
+                            <span class="icon">🔍</span> Consultar
+                        </button>
+                        <button id="limpiarFormulario" class="limpiar-button">
+                            <span class="icon">🗑️</span> Limpiar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Área de respuesta -->
+                <div class="respuesta-container" id="respuestaContainer" style="display: none;">
+                    <div class="respuesta-header">
+                        <h3>Respuesta:</h3>
+                        <div class="api-indicator" id="apiIndicator">Asistente IA</div>
+                    </div>
+                    <div class="respuesta-content" id="respuestaContent">
+                        <!-- Aquí se mostrará la respuesta -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botones de navegación -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button volver-button">
+                <span class="icon">←</span> Volver al Generador
+            </a>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/asistente.js"></script>
+</body>
+</html>
