@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuales y Procedimientos - Mostaza Mantenimiento</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/manuales.css">
+    <link rel="icon" href="images/logo-mostaza-chico-150x150.png" type="image/png">
+    <script>
+        // Asegurar que la página siempre se cargue en la parte superior
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // También forzar el scroll al inicio si se navega hacia atrás/adelante
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // Asegurar que la página comience en la parte superior incluso antes de que se cargue completamente
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
+</head>
+<body>
+    <!-- Fondo de malla de puntos -->
+    <div class="network-background">
+        <canvas id="networkCanvas"></canvas>
+    </div>
+    
+    <div class="container" id="inicio">
+        <div class="header">
+            <div class="logo-container">
+                <img src="images/logo-mostaza-rojo.png" alt="Logo Mostaza" class="logo">
+            </div>
+            <h1>MANUALES Y PROCEDIMIENTOS</h1>
+        </div>
+        
+        <div class="manuales-container">
+            <div class="manuales-intro">
+                <p>Seleccione un equipo o procedimiento para descargar su manual en formato PDF:</p>
+            </div>
+            
+            <div class="manuales-categorias">
+                <h2>Equipos de Cocina</h2>
+                <div class="manuales-grid">
+                    <div class="manual-item" data-manual="broiler">
+                        <div class="manual-icon">📘</div>
+                        <h3>Broiler</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="broiler-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="freidora">
+                        <div class="manual-icon">📕</div>
+                        <h3>Freidora</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="freidora-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="cafetera">
+                        <div class="manual-icon">📙</div>
+                        <h3>Cafetera</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="cafetera-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="phu">
+                        <div class="manual-icon">📗</div>
+                        <h3>PHU</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="phu-manual">Descargar PDF</a>
+                    </div>
+                </div>
+                
+                <h2>Equipos de Refrigeración</h2>
+                <div class="manuales-grid">
+                    <div class="manual-item" data-manual="maquina-hielo">
+                        <div class="manual-icon">❄️</div>
+                        <h3>Máquina de Hielo</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="hielo-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="heladera">
+                        <div class="manual-icon">🧊</div>
+                        <h3>Heladeras</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="heladera-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="freezer">
+                        <div class="manual-icon">❄️</div>
+                        <h3>Freezers</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="freezer-manual">Descargar PDF</a>
+                    </div>
+                    
+                    <div class="manual-item" data-manual="horno">
+                        <div class="manual-icon">🔥</div>
+                        <h3>Hornos</h3>
+                        <p>Manual de operación y mantenimiento básico</p>
+                        <a href="#" class="download-button" id="horno-manual">Descargar PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botones de navegación -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button home-button">
+                <span class="icon">🏠</span> Inicio
+            </a>
+            <a href="asistente.html" class="nav-button asistente-button">
+                <span class="icon">🤖</span> Asistente IA
+            </a>
+            <button id="volverArribaBtn" class="nav-button volver-arriba-button">
+                <span class="icon">↑</span> Volver arriba
+            </button>
+        </div>
+        
+        <footer>
+            <p> 2025 Mostaza - Sistema de Mantenimiento</p>
+        </footer>
+    </div>
+
+    <script src="js/background.js"></script>
+    <script src="js/manuales.js"></script>
+</body>
+</html>

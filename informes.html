@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informes de Mantenimiento - Mostaza</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/informes.css">
+    <link rel="icon" href="images/logo-mostaza-chico-150x150.png" type="image/png">
+    <script>
+        // Asegurar que la página siempre se cargue en la parte superior
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // También forzar el scroll al inicio si se navega hacia atrás/adelante
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        }
+        
+        // Asegurar que la página comience en la parte superior incluso antes de que se cargue completamente
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
+</head>
+<body>
+    <!-- Fondo de malla de puntos -->
+    <div class="network-background">
+        <canvas id="networkCanvas"></canvas>
+    </div>
+    
+    <div class="container" id="inicio">
+        <div class="header">
+            <div class="logo-container">
+                <img src="images/logo-mostaza-rojo.png" alt="Logo Mostaza" class="logo">
+            </div>
+            <h1>INFORMES DE MANTENIMIENTO</h1>
+        </div>
+        
+        <div class="informes-container">
+            <div class="informes-intro">
+                <p>Seleccione una categoría para acceder a los informes y documentos de mantenimiento:</p>
+            </div>
+            
+            <div class="informes-grid">
+                <div class="informe-item" data-informe="ots-local">
+                    <div class="informe-icon">📊</div>
+                    <h3>OTs por Local</h3>
+                    <p>Informes detallados de órdenes de trabajo clasificados por local</p>
+                    <a href="#" class="access-button" id="ots-local-btn">Acceder</a>
+                </div>
+                
+                <div class="informe-item" data-informe="planificacion">
+                    <div class="informe-icon">📅</div>
+                    <h3>Planificación Mensual</h3>
+                    <p>Calendario de visitas programadas para mantenimiento</p>
+                    <a href="#" class="access-button" id="planificacion-btn">Acceder</a>
+                </div>
+                
+                <div class="informe-item" data-informe="preventivos">
+                    <div class="informe-icon">🔧</div>
+                    <h3>Mantenimientos Preventivos</h3>
+                    <p>Registros e informes de mantenimientos preventivos realizados</p>
+                    <a href="#" class="access-button" id="preventivos-btn">Acceder</a>
+                </div>
+                
+                <div class="informe-item" data-informe="acuerdo">
+                    <div class="informe-icon">📝</div>
+                    <h3>Acuerdo de Servicio</h3>
+                    <p>Documentos y términos de los acuerdos de servicio de mantenimiento</p>
+                    <a href="#" class="access-button" id="acuerdo-btn">Acceder</a>
+                </div>
+                
+                <div class="informe-item" data-informe="contactos">
+                    <div class="informe-icon">👥</div>
+                    <h3>Contactos Mantenimiento</h3>
+                    <p>Directorio de contactos del departamento de mantenimiento</p>
+                    <a href="#" class="access-button" id="contactos-btn">Acceder</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botones de navegación -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button home-button">
+                <span class="icon">🏠</span> Inicio
+            </a>
+            <a href="asistente.html" class="nav-button asistente-button">
+                <span class="icon">🤖</span> Asistente IA
+            </a>
+            <a href="manuales.html" class="nav-button manuales-button">
+                <span class="icon">📚</span> Manuales
+            </a>
+            <button id="volverArribaBtn" class="nav-button volver-arriba-button">
+                <span class="icon">↑</span> Volver arriba
+            </button>
+        </div>
+        
+        <footer>
+            <p> 2025 Mostaza - Sistema de Mantenimiento</p>
+        </footer>
+    </div>
+
+    <script src="js/background.js"></script>
+    <script src="js/informes.js"></script>
+</body>
+</html>

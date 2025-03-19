@@ -1,0 +1,176 @@
+/* Estilos para la página de Informes de Mantenimiento */
+
+.informes-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    margin: 30px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.informes-intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.informes-intro p {
+    font-size: 18px;
+    color: #333;
+}
+
+.informes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.informe-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+}
+
+.informe-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.informe-icon {
+    font-size: 48px;
+    margin: 10px 0;
+}
+
+.informe-item h3 {
+    color: #2c3e50;
+    margin: 15px 0 10px;
+    font-size: 22px;
+}
+
+.informe-item p {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.access-button {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+}
+
+.access-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.access-button:active {
+    transform: scale(0.98);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .informes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    
+    .informe-item {
+        padding: 20px;
+        min-height: 220px;
+    }
+    
+    .informe-icon {
+        font-size: 40px;
+    }
+    
+    .informe-item h3 {
+        font-size: 20px;
+    }
+    
+    .informe-item p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .informes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .informes-container {
+        padding: 20px;
+    }
+    
+    .informe-item {
+        min-height: auto;
+    }
+}
+
+/* Animación de carga para los botones de acceso */
+.access-button.loading {
+    position: relative;
+    color: transparent;
+}
+
+.access-button.loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Estilos para mensajes flotantes */
+.mensaje-flotante {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease;
+}
+
+.mensaje-flotante.success {
+    background-color: #2ecc71;
+}
+
+.mensaje-flotante.warning {
+    background-color: #f39c12;
+}
+
+.mensaje-flotante.error {
+    background-color: #e74c3c;
+}

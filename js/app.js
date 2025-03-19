@@ -248,13 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
         
-        // Validar formato de ID de Tienda (T-XXXX)
-        const idTiendaRegex = /^T-\d{4}$/;
-        if (!idTiendaRegex.test(idTienda)) {
-            alert('El ID de Tienda debe tener el formato T-XXXX (donde X son dígitos)');
-            return false;
-        }
-        
         return true;
     };
     
